@@ -4,9 +4,9 @@ import fastapi
 
 meta = importlib.metadata.metadata("farenus-api")
 
-api = fastapi.FastAPI(version=meta["version"], title=meta["name"])
+app = fastapi.FastAPI(version=meta["version"], title=meta["name"])
 
 
-@api.get("/")
+@app.get("/")
 def root():
     return {"name": meta["name"], "version": meta["version"]}
