@@ -1,8 +1,9 @@
 import importlib.metadata
+import time
 
 import fastapi
 
-from farenus_api import config
+from farenus_api import auth, config
 
 DEBUG = config.API_DEBUG_MODE
 
@@ -20,3 +21,8 @@ app = fastapi.FastAPI(
 @app.get("/")
 def root():
     return {"name": meta["name"], "version": meta["version"]}
+
+
+@app.get("/health", dependencies=[fastapi.Depends(auth.require_api_key)])
+def get_health():
+    return {"status": "ok", "uptime_seconds": round(time.time() - config.START_TIME)}

@@ -1,3 +1,5 @@
+import time
+
 import dotenv
 
 env_file = dotenv.dotenv_values(".env")
@@ -10,3 +12,5 @@ def _to_bool(value):
 
 
 API_DEBUG_MODE = _to_bool(env_file.get("API_DEBUG_MODE"))
+
+START_TIME = time.time()
