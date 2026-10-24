@@ -1,0 +1,18 @@
+[Unit]
+Description=farenus-api
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=api
+Group=api
+WorkingDirectory=/opt/api
+ExecStart=/opt/api/.venv/bin/uvicorn farenus_api.main:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips=PROXY_IP
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
