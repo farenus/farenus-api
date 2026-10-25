@@ -1,9 +1,12 @@
 import importlib.metadata
+import pathlib
 import time
 
 import dotenv
 
-env_file = dotenv.dotenv_values(".env")
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[2]
+
+env_file = dotenv.dotenv_values(PROJECT_ROOT / ".env")
 
 meta = importlib.metadata.metadata("farenus-api")
 
