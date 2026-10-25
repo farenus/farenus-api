@@ -1,8 +1,11 @@
+import importlib.metadata
 import time
 
 import dotenv
 
 env_file = dotenv.dotenv_values(".env")
+
+meta = importlib.metadata.metadata("farenus-api")
 
 
 def _to_bool(value):

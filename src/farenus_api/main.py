@@ -1,4 +1,3 @@
-import importlib.metadata
 import time
 
 import fastapi
@@ -7,7 +6,7 @@ from farenus_api import auth, config
 
 DEBUG = config.API_DEBUG_MODE
 
-meta = importlib.metadata.metadata("farenus-api")
+meta = config.meta
 
 app = fastapi.FastAPI(
     title=meta["name"],
