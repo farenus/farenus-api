@@ -1,8 +1,7 @@
-import time
-
 import fastapi
 
-from farenus_api import auth, config
+from farenus_api import config
+from farenus_api.routers import health, root
 
 DEBUG = config.API_DEBUG_MODE
 
@@ -16,12 +15,5 @@ app = fastapi.FastAPI(
     openapi_url="/openapi.json" if DEBUG else None,
 )
 
-
-@app.get("/")
-def root():
-    return {"name": meta["name"], "version": meta["version"]}
-
-
-@app.get("/health", dependencies=[fastapi.Depends(auth.require_api_key)])
-def get_health():
-    return {"status": "ok", "uptime_seconds": round(time.time() - config.START_TIME)}
+app.include_router(root.router)
+app.include_router(health.router)
