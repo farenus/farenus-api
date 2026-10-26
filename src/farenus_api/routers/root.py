@@ -2,7 +2,7 @@ import fastapi
 
 from farenus_api import config
 
-router = fastapi.APIRouter()
+router = fastapi.APIRouter(tags=["root"])
 
 meta = config.meta
 
