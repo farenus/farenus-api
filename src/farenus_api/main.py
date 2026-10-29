@@ -5,11 +5,9 @@ from farenus_api.routers import health, root
 
 DEBUG = config.API_DEBUG_MODE
 
-meta = config.meta
-
 app = fastapi.FastAPI(
-    title=meta["name"],
-    version=meta["version"],
+    title=config.META["name"],
+    version=config.META["version"],
     docs_url="/docs" if DEBUG else None,
     redoc_url="/redoc" if DEBUG else None,
     openapi_url="/openapi.json" if DEBUG else None,

@@ -16,7 +16,7 @@ class Caller(pydantic.BaseModel):
 
 def _load_api_keys() -> dict[str, Caller]:
     api_keys: dict[str, Caller] = {}
-    for var_name, value in config.env_file.items():
+    for var_name, value in config.ENV_FILE.items():
         if not var_name.startswith(_API_KEY_PREFIX):
             continue
         if not value:
