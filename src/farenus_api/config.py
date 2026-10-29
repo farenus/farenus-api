@@ -6,9 +6,9 @@ import dotenv
 
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[2]
 
-env_file = dotenv.dotenv_values(PROJECT_ROOT / ".env")
+ENV_FILE = dotenv.dotenv_values(PROJECT_ROOT / ".env")
 
-meta = importlib.metadata.metadata("farenus-api")
+META = importlib.metadata.metadata("farenus-api")
 
 
 def _to_bool(value):
@@ -17,6 +17,6 @@ def _to_bool(value):
     return value.strip() == "True"
 
 
-API_DEBUG_MODE = _to_bool(env_file.get("API_DEBUG_MODE"))
+API_DEBUG_MODE = _to_bool(ENV_FILE.get("API_DEBUG_MODE"))
 
 START_TIME = time.time()
