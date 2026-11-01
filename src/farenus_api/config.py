@@ -10,6 +10,10 @@ ENV_FILE = dotenv.dotenv_values(PROJECT_ROOT / ".env")
 
 META = importlib.metadata.metadata("farenus-api")
 
+DATABASE_BACKEND = ENV_FILE.get("DATABASE_BACKEND", "sqlite").lower()
+
+SQLITE_PATH = PROJECT_ROOT / "data/local.db"
+
 
 def _to_bool(value: str) -> bool:
     if value is None:
