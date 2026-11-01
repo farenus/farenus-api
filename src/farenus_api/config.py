@@ -11,7 +11,7 @@ ENV_FILE = dotenv.dotenv_values(PROJECT_ROOT / ".env")
 META = importlib.metadata.metadata("farenus-api")
 
 
-def _to_bool(value):
+def _to_bool(value: str) -> bool:
     if value is None:
         return False
     return value.strip() == "True"
