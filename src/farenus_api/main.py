@@ -1,7 +1,7 @@
 import fastapi
 
 from farenus_api import config
-from farenus_api.routers import health, root
+from farenus_api.routers import health, root, weather
 
 DEBUG = config.API_DEBUG_MODE
 
@@ -15,3 +15,4 @@ app = fastapi.FastAPI(
 
 app.include_router(root.router)
 app.include_router(health.router)
+app.include_router(weather.router)
