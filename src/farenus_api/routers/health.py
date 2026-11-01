@@ -8,5 +8,5 @@ router = fastapi.APIRouter(prefix="/health", tags=["health"])
 
 
 @router.get("", dependencies=[fastapi.Depends(auth.require_api_key)])
-def get_health():
+def root():
     return {"status": "ok", "uptime_seconds": round(time.time() - config.START_TIME)}
