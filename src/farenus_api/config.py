@@ -1,16 +1,26 @@
+import importlib.metadata
+import pathlib
 import time
 
 import dotenv
 
-env_file = dotenv.dotenv_values(".env")
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[2]
+
+ENV_FILE = dotenv.dotenv_values(PROJECT_ROOT / ".env")
+
+META = importlib.metadata.metadata("farenus-api")
+
+DATABASE_BACKEND = ENV_FILE.get("DATABASE_BACKEND", "sqlite").lower()
+
+SQLITE_PATH = PROJECT_ROOT / "data/local.db"
 
 
-def _to_bool(value):
+def _to_bool(value: str) -> bool:
     if value is None:
         return False
     return value.strip() == "True"
 
 
-API_DEBUG_MODE = _to_bool(env_file.get("API_DEBUG_MODE"))
+API_DEBUG_MODE = _to_bool(ENV_FILE.get("API_DEBUG_MODE"))
 
 START_TIME = time.time()
