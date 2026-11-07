@@ -1,6 +1,7 @@
 import contextlib
 
 import fastapi
+import fastapi.middleware.cors
 
 from farenus_api import config, database
 from farenus_api.repositories import weather as weather_repository
@@ -22,6 +23,13 @@ app = fastapi.FastAPI(
     docs_url="/docs" if DEBUG else None,
     redoc_url="/redoc" if DEBUG else None,
     openapi_url="/openapi.json" if DEBUG else None,
+)
+
+app.add_middleware(
+    fastapi.middleware.cors.CORSMiddleware,
+    allow_origins=config.CORS_ORIGINS,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(root.router)
