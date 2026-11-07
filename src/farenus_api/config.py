@@ -14,6 +14,8 @@ DATABASE_BACKEND = ENV_FILE.get("DATABASE_BACKEND", "sqlite").lower()
 
 SQLITE_PATH = PROJECT_ROOT / "data/local.db"
 
+CORS_ORIGINS = ENV_FILE.get("CORS_ORIGINS")
+
 
 def _to_bool(value: str) -> bool:
     if value is None:
