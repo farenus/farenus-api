@@ -3,16 +3,17 @@ import contextlib
 import fastapi
 import fastapi.middleware.cors
 
-from farenus_api import config, database
-from farenus_api.repositories import weather as weather_repository
-from farenus_api.routers import health, root, weather
+from farenus_api import config
+from farenus_api import database
+from farenus_api import repositories
+from farenus_api import routers
 
 DEBUG = config.API_DEBUG_MODE
 
 
 @contextlib.asynccontextmanager
 async def lifespan(app):
-    database.init_db(weather_repository.SCHEMA)
+    database.init_db(repositories.weather.SCHEMA)
     yield
 
 
@@ -32,6 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(root.router)
-app.include_router(health.router)
-app.include_router(weather.router)
+app.include_router(routers.root.router)
+app.include_router(routers.health.router)
+app.include_router(routers.weather.router)
