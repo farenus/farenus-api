@@ -36,3 +36,4 @@ app.add_middleware(
 app.include_router(routers.root.router)
 app.include_router(routers.health.router)
 app.include_router(routers.weather.router)
+app.include_router(routers.minecraft.router)
