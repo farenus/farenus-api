@@ -2,7 +2,8 @@ import time
 
 import fastapi
 
-from farenus_api import auth, config
+from farenus_api import auth
+from farenus_api import config
 
 router = fastapi.APIRouter(prefix="/health", tags=["health"])
 

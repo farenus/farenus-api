@@ -1,6 +1,6 @@
 [project]
 name = "farenus-api"
-version = "0.2.1"
+version = "0.3.0"
 description = "api backend for farenus-network"
 readme = "README.md"
 license = "MIT"
@@ -13,6 +13,7 @@ classifiers = [
     "Private :: Do Not Upload",
 ]
 dependencies = [
+    "aio-mc-rcon>=3.5.0",
     "fastapi>=0.157.0",
     "pydantic>=2.14.1",
     "python-dotenv>=1.2.4",
@@ -22,3 +23,9 @@ dependencies = [
 [build-system]
 requires = ["uv_build>=0.13.3,<0.14.0"]
 build-backend = "uv_build"
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.ruff.lint.isort]
+force-single-line = true

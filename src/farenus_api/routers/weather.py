@@ -4,8 +4,9 @@ import typing
 import fastapi
 import pydantic
 
-from farenus_api import auth, database
-from farenus_api.repositories import weather as weather_repository
+from farenus_api import auth
+from farenus_api import database
+from farenus_api import repositories
 
 router = fastapi.APIRouter(prefix="/weather", tags=["weather"])
 
@@ -40,7 +41,7 @@ def post_measurements(
     measurement: MeasurementCreate,
     con: connection,
 ):
-    return weather_repository.insert_measurement(
+    return repositories.weather.insert_measurement(
         con, station_id, **measurement.model_dump()
     )
 
@@ -54,4 +55,4 @@ def get_measurements(
     con: connection,
     limit: int = 60,
 ):
-    return weather_repository.list_measurements(con, station_id, limit)
+    return repositories.weather.list_measurements(con, station_id, limit)

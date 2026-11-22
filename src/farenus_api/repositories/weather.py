@@ -15,7 +15,7 @@ CREATE INDEX IF NOT EXISTS idx_measurements_station_time
 
 
 def insert_measurement(con, station_id, temperature, humidity, pressure):
-    measured_at = datetime.datetime.now(datetime.UTC).isoformat(timespec="milliseconds")
+    measured_at = datetime.datetime.now(datetime.UTC).isoformat(timespec="seconds")
     with con:
         cursor = con.execute(
             "INSERT INTO measurements "
