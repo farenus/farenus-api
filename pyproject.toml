@@ -13,6 +13,7 @@ classifiers = [
     "Private :: Do Not Upload",
 ]
 dependencies = [
+    "aio-mc-rcon>=3.5.0",
     "fastapi>=0.157.0",
     "pydantic>=2.14.1",
     "python-dotenv>=1.2.4",
