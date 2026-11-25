@@ -13,3 +13,11 @@ async def whitelist_add(player):
     await client.send_cmd(f"whitelist add {player}")
     await client.close()
     return {"player": player}
+
+
+async def whitelist_remove(player):
+    client = aiomcrcon.Client(host, port, password)
+    await client.connect()
+    await client.send_cmd(f"whitelist remove {player}")
+    await client.close()
+    return {"player": player}

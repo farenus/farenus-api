@@ -21,10 +21,20 @@ def root():
 
 
 @router.post(
-    "/whitelist",
+    "/whitelist/add",
     status_code=201,
     response_model=WhitelistResponse,
     dependencies=[fastapi.Depends(auth.require_api_key)],
 )
 async def whitelist_add(data: WhitelistCreate):
     return await services.minecraft.whitelist_add(data.player)
+
+
+@router.post(
+    "/whitelist/remove",
+    status_code=201,
+    response_model=WhitelistResponse,
+    dependencies=[fastapi.Depends(auth.require_api_key)],
+)
+async def whitelist_remove(data: WhitelistCreate):
+    return await services.minecraft.whitelist_remove(data.player)
